@@ -29,6 +29,63 @@ TSMCTS produces **higher success rates**, **more efficient rearrangement paths**
 
 ---
 
+## Download Data
+
+You can download TTU dataset from the URL below:
+
+[TTU-Dataset](https://github.com/rllab-snu/TTU-Dataset)
+
+TTU dataset contains the files below: 
+
+**train_B.tar.gz**, **train_C.tar.gz**, **train_D.tar.gz**, **train_O.tar.gz**,
+**test_SU.tar.gz**, **test_US.tar.gz**, **test_UU.tar.gz**
+
+After downloading all the compressed files, uncompress the datasets using the command below:
+    
+    $ source untar.sh
+
+## Data Structure
+  
+    TTU_dataset/
+      ├── train/
+      │     └── {scene_id}/                          # scene_id:         (B1, B2, …, C1, C2, …, D1, D2, …, O1, O2, …)
+      │         └── template_{template_num}/         # template_num:     (00001 ~ 00016)
+      │             └── traj_{trajectory_num}/       # trajectory_num:   (00000 ~ 00099)
+      │                 └── {frame_num}/             # frame_num:        (000 ~ 004)
+      │                     ├── rgb_top.png
+      │                     ├── rgb_front_top.png
+      │                     ├── depth_top.npy
+      │                     ├── deoth_front_top.npy
+      │                     ├── seg_top.npy
+      │                     ├── seg_front_top.npy
+      │                     └── obj_info.json
+      ├── test-seen_obj-unseen_template/
+      │     └── ...
+      ├── test-unseen_obj-seen_template/
+      │     └── ...
+      └── test-unseen_obj-unseen_template/
+            └── ...
+
+---
+
+## Policy Training
+
+```bash
+cd iql/
+python main.py --eval-period 2000 --data-dir <DATA_DIR> --reward-model-path ../mcts/data/classification-best/top_nobg_linspace_mse-best.pth --n-epochs 30 --policy-net resnet --q-net resnet --batch-size 32 --reward classifier
+```
+
+## TSMCTS Evaluation
+
+```bash
+cd mcts/
+python mcts.py --iteration-limit 5000  --gui-off  --tree-policy iql-policy --policynet-path ../iql/logs/<IQL_TAG>/<IQL_MODEL_NAME>.pth --threshold-prob 1e-4 --num-objects 5 --blurring 3 --data-dir <DATA_DIR> --num-scenes 10 --seed 4321 --logging
+
+```
+
+
+---
+
 ## Citation
 
 If you find this repository helpful in your research, please cite:

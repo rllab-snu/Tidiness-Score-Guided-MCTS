@@ -3,7 +3,9 @@
 This repository contains the official PyTorch implementation of our RA-L 2025 paper:
 
 ### **Tidiness Score-Guided Monte Carlo Tree Search for Visual Tabletop Rearrangement**  
+
 Hogun Kee, Wooseok Oh, Minjae Kang, Hyemin Ahn, and Songhwai Oh
+
 Robot Learning Lab, Seoul National University
 
 ---
@@ -25,8 +27,6 @@ Our framework consists of:
 3. **Tidiness Score-Guided MCTS**  
    An MCTS planner that expands trajectories using tidiness score increments as reward.
 
-TSMCTS produces **higher success rates**, **more efficient rearrangement paths**, and **interpretable planning traces** compared to baseline planners.
-
 ---
 
 ## Download Data
@@ -40,9 +40,6 @@ TTU dataset contains the files below:
 **train_B.tar.gz**, **train_C.tar.gz**, **train_D.tar.gz**, **train_O.tar.gz**,
 **test_SU.tar.gz**, **test_US.tar.gz**, **test_UU.tar.gz**
 
-After downloading all the compressed files, uncompress the datasets using the command below:
-    
-    $ source untar.sh
 
 ## Data Structure
   

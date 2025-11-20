@@ -108,3 +108,6 @@ If you find this repository helpful in your research, please cite:
 }
 
 
+## License
+This project is released under the MIT license, as found in the [LICENSE](LICENSE) file.
+

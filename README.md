@@ -68,7 +68,18 @@ After downloading all the compressed files, uncompress the datasets using the co
 
 ---
 
-## Policy Training
+## Tidiness Score Training
+
+To train the tidiness discriminator, run:
+
+```bash
+cd mcts/
+python classifier_train.py --data-dir <DATA_DIR> --loss mse --label_type linspace
+```
+
+## Tidying Policy Training
+
+To train the tidying policy, run:
 
 ```bash
 cd iql/
@@ -76,6 +87,8 @@ python main.py --eval-period 2000 --data-dir <DATA_DIR> --reward-model-path ../m
 ```
 
 ## TSMCTS Evaluation
+
+To evaluate the TSMCTS method, run:
 
 ```bash
 cd mcts/
